@@ -1,0 +1,9 @@
+@media (max-width: 767.98px) {
+  .mx-w-sm-100 {
+    max-width: 100% !important;
+  }
+}
+
+.mx-w-lg-50 {
+  max-width: 50%;
+}

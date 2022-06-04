@@ -1,0 +1,20 @@
+<div class="container p-3">
+  <form #advForm="ngForm" class="d-flex flex-column">
+    <select class="form-control mb-2" aria-label="Виберіть поштовий клієнт" name="client"
+            [(ngModel)]="selectedConfig.client" required>
+      <option value="" disabled selected >Виберіть поштовий клієнт</option>
+      <option value="gmail">gmail</option>
+      <option disabled value="outlook">outlook</option>
+    </select>
+    <mdb-form-control class="mb-2">
+      <input mdbInput type="email" id="email" class="form-control" name="email" [(ngModel)]="selectedConfig.email"/>
+      <label mdbLabel class="form-label" for="email">Електронна пошта</label>
+    </mdb-form-control>
+    <mdb-form-control class="mb-2">
+      <input mdbInput type="password" id="password" class="form-control" name="password" [(ngModel)]="selectedConfig.password"/>
+      <label mdbLabel class="form-label" for="password">Пароль</label>
+    </mdb-form-control>
+
+    <button (click)="save()" class="btn btn-primary">Зберегти</button>
+  </form>
+</div>

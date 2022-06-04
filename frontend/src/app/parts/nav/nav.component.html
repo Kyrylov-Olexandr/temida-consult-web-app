@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+    <a class="navbar-brand me-2" href="https://mdbgo.com/">
+      <img
+        src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.webp"
+        height="16"
+        alt=""
+        loading="lazy"
+        style="margin-top: -1px;"
+      />
+    </a>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="buttonsNav.toggle()"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div
+      class="collapse navbar-collapse"
+      id="navbarButtonsExample"
+      mdbCollapse
+      #buttonsNav="mdbCollapse"
+    >
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']">Головна</a>
+        </li>
+        <li>
+          <a class="nav-link" [routerLink]="['/questions']">Запитання</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+
+      <div class="d-flex align-items-center">
+        <a *ngIf="!userAuth" class="btn btn-primary shadow" role="button" [routerLink]="['/login']">Увійти</a>
+
+        <div *ngIf="userAuth" class="dropdown">
+          <div mdbDropdown class="btn-group">
+            <button type="button" class="btn btn-primary">{{userAuth.name!}}</button>
+            <button
+              type="button"
+              class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+              mdbDropdownToggle
+              aria-expanded="false"
+            >
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul mdbDropdownMenu class="dropdown-menu">
+              <li><a class="dropdown-item" [routerLink]="['/cabinet/profile']">Персональні дані</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/cabinet/user-management']">Користувачі</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/cabinet/advertisements']">Реклама</a></li>
+              <li><a class="dropdown-item" (click)="logout()" [routerLink]="['/login']">Вийти</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+

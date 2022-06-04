@@ -1,0 +1,9 @@
+#advList {
+  max-height: 60vh;
+  /*position: relative;*/
+}
+#openAdvListBtn {
+  position: absolute;
+  top: 45px;
+  left: 15px;
+}

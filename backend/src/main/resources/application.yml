@@ -1,0 +1,31 @@
+## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/temida_consult
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+#    generate-ddl: false
+    hibernate:
+      ddl-auto: create
+    database: mysql
+  #      dialect: org.hibernate.dialect.MySQL5Dialect
+
+#  jackson:
+#    default-property-inclusion: non_null
+#  redis:
+#    host: localhost
+#    port: 6379
+#  freemarker:
+#      cache: false
+  queries:
+    users-query: select email, password, active from user where email=?
+    roles-query: select email, role from user where email=?
+server:
+  servlet:
+    contextPath: /api
+
+jwtSecret: kyrylovoleksandr
+jwtExpiration: 86400

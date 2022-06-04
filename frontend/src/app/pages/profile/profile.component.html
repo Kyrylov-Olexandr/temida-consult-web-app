@@ -1,0 +1,95 @@
+<!--<div  class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 container">-->
+<!--  <div class=" h-100 col-lg-6">-->
+<div class="d-flex">
+  <div class="col-lg-2 d-none d-lg-block d-xl-block"></div>
+  <div class="col-lg-8">
+    <form #form="ngForm" (ngSubmit)="saveProfile(form)">
+      <div class="row gutters">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <h6 class="mb-2 text-primary">Персональні дані</h6>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="firstName">Ім'я</label>
+            <input id="firstName" name="firstName"
+                   class="form-control" type="text"
+                   placeholder="Ім'я" [(ngModel)]="user.firstName">
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="lastName">Прізвище</label>
+            <input id="lastName" name="lastName"
+                   class="form-control" type="text"
+                   placeholder="Прізвище" [(ngModel)]="user.lastName"/>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="email">Ел. пошта</label>
+            <input id="email" name="email"
+                   class="form-control" type="email"
+                   placeholder="Ел. пошта" [(ngModel)]="user.email"/>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="phone">Моб. номер</label>
+            <input id="phone" name="phone"
+                   class="form-control" type="text"
+                   placeholder="Моб. номер" [(ngModel)]="user.phone"/>
+          </div>
+        </div>
+      </div>
+      <div class="row gutters">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <h6 class="mt-3 mb-2 text-primary">Адреса</h6>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="region">Область</label>
+            <input id="region" class="form-control"
+                   type="text" placeholder="Область"
+                   name="region" ngModel [(ngModel)]="user.region"/>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="locality">Населений пункт</label>
+            <input id="locality"
+                   class="form-control"
+                   type="text"
+                   placeholder="Населений пункт"
+                   name="locality" [(ngModel)]="user.locality"/>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="street">Вулиця</label>
+            <input id="street" name="street"
+                   class="form-control"
+                   type="text" placeholder="Вулиця" [(ngModel)]="user.street"/>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="zip">Поштовий код</label>
+            <input id="zip" class="form-control"
+                   type="text"
+                   placeholder="Поштовий код"
+                   name="zip" [(ngModel)]="user.zip"/>
+          </div>
+        </div>
+      </div>
+      <div class="row gutters mt-3">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="text-right">
+            <button id="cancel" class="btn btn-secondary" type="button" name="cancel">Відміна</button>
+            <button id="save" class="btn btn-primary" type="submit" name="save">Зберегти</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!--</div>-->

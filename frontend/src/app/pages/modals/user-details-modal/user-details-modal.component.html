@@ -1,0 +1,98 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">{{user.firstName + " " + user.lastName}}</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+</div>
+<div class="modal-body modal-dialog-centered">
+  <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 container">
+<!--    <div class="card h-100">-->
+<!--      <div class="card-body">-->
+        <form #form="ngForm">
+          <div class="row gutters">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <h6 class="mb-2 text-primary">Персональні дані</h6>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+              <div class="form-group"><label for="firstName">Ім'я</label><input readonly id="firstName" name="firstName"
+                                                                                class="form-control" type="text"
+                                                                                placeholder="Ім'я"
+                                                                                [(ngModel)]="user.firstName"></div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+              <div class="form-group"><label for="lastName">Прізвище</label><input readonly id="lastName"
+                                                                                   name="lastName"
+                                                                                   class="form-control" type="text"
+                                                                                   placeholder="Прізвище"
+                                                                                   [(ngModel)]="user.lastName"/></div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+              <div class="form-group"><label for="email">Ел. пошта</label><input readonly id="email" name="email"
+                                                                                 class="form-control" type="email"
+                                                                                 placeholder="Ел. пошта"
+                                                                                 [(ngModel)]="user.email"/></div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+              <div class="form-group"><label for="phone">Моб. номер</label><input readonly id="phone" name="phone"
+                                                                                  class="form-control" type="text"
+                                                                                  placeholder="Моб. номер"
+                                                                                  [(ngModel)]="user.phone"/></div>
+            </div>
+          </div>
+          <div class="row gutters">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <h6 class="mt-3 mb-2 text-primary">Адреса</h6>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+              <div class="form-group"><label for="region">Область</label><input readonly id="region"
+                                                                                class="form-control"
+                                                                                type="text" placeholder="Область"
+                                                                                name="region" ngModel
+                                                                                [(ngModel)]="user.region"/></div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+              <div class="form-group"><label for="locality">Населений пункт</label><input readonly id="locality"
+                                                                                          class="form-control"
+                                                                                          type="text"
+                                                                                          placeholder="Населений пункт"
+                                                                                          name="locality"
+                                                                                          [(ngModel)]="user.locality"/>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+              <div class="form-group"><label for="street">Вулиця</label><input readonly id="street" name="street"
+                                                                               class="form-control"
+                                                                               type="text" placeholder="Вулиця"
+                                                                               [(ngModel)]="user.street"/>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+              <div class="form-group"><label for="zip">Поштовий код</label><input readonly id="zip" class="form-control"
+                                                                                  type="text"
+                                                                                  placeholder="Поштовий код"
+                                                                                  name="zip" [(ngModel)]="user.zip"/>
+              </div>
+            </div>
+          </div>
+          <!--          <div class="row gutters">-->
+          <!--            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">-->
+          <!--              <div class="text-right">-->
+          <!--                <button id="cancel" class="btn btn-secondary" type="button" name="cancel">Відміна</button>-->
+          <!--                <button id="save" class="btn btn-primary" type="submit" name="save">Зберегти</button>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+        </form>
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+    Close
+  </button>
+<!--  <button type="button" class="btn btn-primary">Save changes</button>-->
+</div>

@@ -1,0 +1,53 @@
+<div class="container d-flex">
+  <div class="" [class.col-lg-4]="!advListContainer.collapsed">
+    <button
+      id="openAdvListBtn" class="navbar-toggler y mb-5 " type="button"
+      (click)="advListContainer.toggle()" [attr.aria-expanded]="!advListContainer.collapsed"
+      aria-controls="advListContainer">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div id="advListContainer" mdbCollapse #advListContainer="mdbCollapse">
+      <h5>Збережені повідомлення</h5>
+      <ul class="list-group list-group-flush overflow-auto overflow-y-scroll" id="advList">
+        <li class="list-group-item active"
+            [class.active]="selectedAdv.id === 0" (click)="createNewAdvertisement()">
+          Нове повідомлення
+        </li>
+        <li *ngFor="let adv of advertisements" class="list-group-item active"
+            [class.active]="selectedAdv.id === adv.id" (click)="openAdvertisement(adv)">
+          {{adv.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="m-3 {{advListContainer.collapsed ? 'w-100' : 'col-lg-8 d-none d-md-block'}}">
+    <form #advForm="ngForm" (ngSubmit)="saveAdvertisement(advForm)">
+      <div>
+        <label mdbLabel class="form-label" for="selectConfig">Виберіть налаштування</label>
+        <div class="input-group mb-3">
+          <select id="selectConfig" class="form-control" aria-label="Виберіть налаштування"
+                  title="Виберіть налаштування" aria-describedby="btnAdvConfig" name="configId"
+                  ngModel [(ngModel)]="selectedAdv.configId" required>
+            <option value=0>Нове налаштування</option>
+            <option *ngFor="let advConfig of advConfigs" [value]="advConfig">{{advConfig.email}}</option>
+          </select>
+          <button class="btn btn-outline-primary" type="button" id="btnAdvConfig" mdbRipple rippleColor="info"
+                  (click)="openConfig()">
+            <i class="fas fa-cog"></i>
+          </button>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" id="name" placeholder="Назва" class="form-control w-auto" name="name" ngModel [(ngModel)]="selectedAdv.name" required/>
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" id="subject" placeholder="Тема" class="form-control w-auto" name="subject" ngModel [(ngModel)]="selectedAdv.subject" required/>
+      </div>
+      <mdb-form-control class="mb-3">
+        <textarea mdbInput class="form-control h-100" id="message" rows="4" name="content" ngModel [(ngModel)]="selectedAdv.content" required></textarea>
+        <label mdbLabel class="form-label" for="message">Повідомлення</label>
+      </mdb-form-control>
+      <button type="submit" class="btn btn-primary">Зберегти</button>
+    </form>
+  </div>
+</div>
