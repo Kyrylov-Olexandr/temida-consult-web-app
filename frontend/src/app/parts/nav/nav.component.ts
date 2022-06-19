@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {Subscription} from "rxjs";
 import {JwtResponse} from "../../response/JwtResponse";
+import {ViewportScroller} from "@angular/common";
 
 @Component({
   selector: 'app-nav',
@@ -16,7 +17,8 @@ export class NavComponent implements OnInit {
   userAuth: JwtResponse | null | undefined;
   root = '/';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,
+              private scroller: ViewportScroller) {}
 
   ngOnInit(): void {
     this.name$ = this.userService.name$.subscribe(aName => this.name = aName);
@@ -31,6 +33,10 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.userService.logout();
+  }
+
+  scrollTo(sectionId: string) {
+    this.scroller.scrollToAnchor(sectionId)
   }
 
 

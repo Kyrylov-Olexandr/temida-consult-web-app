@@ -1,14 +1,18 @@
 package app.controller;
 
 
+import app.email_sender.MailServiceEnum;
 import app.model.Advertisement;
 import app.service.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.NoSuchElementException;
 
+@RequestMapping("/advertisement")
 @CrossOrigin
 @RestController
 public class AdvertisementController {
@@ -20,7 +24,7 @@ public class AdvertisementController {
         this.advertisementService = advertisementService;
     }
 
-    @PostMapping("/advertisement")
+    @PostMapping()
     public ResponseEntity<Advertisement> save(@RequestBody Advertisement advertisement) {
         try {
             Advertisement savedAdvertisement = advertisementService.save(advertisement);
@@ -30,7 +34,7 @@ public class AdvertisementController {
         }
     }
 
-    @DeleteMapping("/advertisement")
+    @DeleteMapping()
     public ResponseEntity deleteById(@RequestParam Long id) {
         try {
             advertisementService.deleteById(id);
@@ -40,21 +44,30 @@ public class AdvertisementController {
         }
     }
 
-    @GetMapping("/advertisement/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Advertisement> findById(@PathVariable long id) {
         try {
             Advertisement advertisement = advertisementService.findById(id).orElseThrow();
             return ResponseEntity.ok(advertisement);
-        } catch (Exception e) {
+        } catch (NoSuchElementException e) {
             return ResponseEntity.badRequest().build();
         }
     }
-    @GetMapping("/advertisement")
+    @GetMapping()
     public ResponseEntity<Collection<Advertisement>> findAll() {
-        try {
             Collection<Advertisement> advertisements = advertisementService.findAll();
             return ResponseEntity.ok(advertisements);
-        } catch (Exception e) {
+    }
+
+    @PostMapping("/{id}/send")
+    public ResponseEntity<Object> send(@PathVariable long id) {
+        try {
+            Advertisement advertisement = advertisementService.findById(id).orElseThrow();
+            advertisementService.send(id, advertisement.getConfig().getClient());
+            return ResponseEntity.ok().build();
+        } catch (NoSuchElementException | IllegalArgumentException exception) {
+            return ResponseEntity.notFound().build();
+        } catch (MailException exception) {
             return ResponseEntity.badRequest().build();
         }
     }

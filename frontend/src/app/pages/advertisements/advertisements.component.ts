@@ -50,6 +50,7 @@ export class AdvertisementsComponent implements OnInit {
 
   openConfig() {
     if (this.selectedAdv.configId !== undefined) {
+      console.log(this.advConfigs.find(el => el.id === this.selectedAdv.configId))
       this.advConfigModalRef = this.modalService.open(AdvConfigModalComponent, {
         modalClass: 'modal-dialog-centered',
         data: {
@@ -94,5 +95,9 @@ export class AdvertisementsComponent implements OnInit {
 
   openAdvertisement(adv: Advertisement) {
     this.selectedAdv = adv;
+  }
+
+  public advConfigTitle(config: AdvertisementConfig): string {
+    return `${config.name} (${config.email})`;
   }
 }

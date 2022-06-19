@@ -1,5 +1,6 @@
 package app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ public class AdvertisementConfig {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String name = "Без назви";
 
     private String client;
 
@@ -21,6 +22,7 @@ public class AdvertisementConfig {
 
     private String password;
 
-//    @ManyToMany
-//    private Set<Subscription> subscriptions;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Advertisement> advertisements;
 }

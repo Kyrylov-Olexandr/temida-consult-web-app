@@ -17,4 +17,5 @@ export class AdvertisementConfig {
   public constructor(init?: Partial<AdvertisementConfig>) {
     Object.assign(this, init);
   }
+
 }

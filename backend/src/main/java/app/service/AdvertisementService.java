@@ -1,5 +1,6 @@
 package app.service;
 
+import app.email_sender.MailServiceEnum;
 import app.model.Advertisement;
 
 import java.util.Collection;
@@ -16,4 +17,6 @@ public interface AdvertisementService {
     Optional<Advertisement> findById(long id);
 
     Collection<Advertisement> findAll();
+
+    void send(Long id, String mailService);
 }

@@ -38,6 +38,7 @@ import { FooterComponent } from './parts/footer/footer.component';
 import { AdvertisementsComponent } from './pages/advertisements/advertisements.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import {AdvConfigModalComponent} from "./pages/advertisements/adv-config-modal/adv-config-modal.component";
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 
 
@@ -57,6 +58,7 @@ import {AdvConfigModalComponent} from "./pages/advertisements/adv-config-modal/a
     AdvertisementsComponent,
     AdvConfigModalComponent,
     ChatComponent,
+    PageNotFoundComponent,
 
   ],
     imports: [

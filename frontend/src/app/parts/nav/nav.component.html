@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top full-width-section" id="nav">
   <!-- Container wrapper -->
   <div class="container">
     <!-- Navbar brand -->
     <a class="navbar-brand me-2" href="https://mdbgo.com/">
       <img
-        src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.webp"
-        height="16"
+        src="../../assets/images/logo.png"
+        height="50px"
         alt=""
         loading="lazy"
         style="margin-top: -1px;"
@@ -36,16 +36,28 @@
           <a class="nav-link" [routerLink]="['/home']">Головна</a>
         </li>
         <li>
-          <a class="nav-link" [routerLink]="['/questions']">Запитання</a>
+          <a class="nav-link" (click)="scrollTo('services')">Послуги</a>
         </li>
+        <li>
+          <a class="nav-link" (click)="scrollTo('testimonials')" >Відгуки</a>
+        </li>
+        <li>
+          <a class="nav-link" (click)="scrollTo('contacts')" >Контакти</a>
+        </li>
+        <li>
+          <a class="nav-link" (click)="scrollTo('subscribe')">Новини</a>
+        </li>
+<!--        <li>-->
+<!--          <a class="nav-link" [routerLink]="['/questions']">Запитання</a>-->
+<!--        </li>-->
       </ul>
       <!-- Left links -->
 
-      <div class="d-flex align-items-center">
-        <a *ngIf="!userAuth" class="btn btn-primary shadow" role="button" [routerLink]="['/login']">Увійти</a>
+      <div class="d-flex align-items-center my-rounded">
+        <a *ngIf="!userAuth" class="btn btn-primary shadow " role="button" [routerLink]="['/login']">Увійти</a>
 
-        <div *ngIf="userAuth" class="dropdown">
-          <div mdbDropdown class="btn-group">
+        <div *ngIf="userAuth" class="dropdown my-rounded">
+          <div mdbDropdown class="btn-group my-rounded">
             <button type="button" class="btn btn-primary">{{userAuth.name!}}</button>
             <button
               type="button"

@@ -6,8 +6,54 @@
 
 @import '~mdb-angular-ui-kit/assets/scss/mdb.scss';
 
+.bg-primary-gradient {
+  background: linear-gradient(135deg, #f8faff, #fef7fd);
+}
+
+.bg-primary-gradient {
+  border-radius: 1rem !important;
+}
 
 body {
-  background-color: rgb(249, 249, 249);
+  background-color: white;
 }
+
+.full-width-section {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.btn {
+  text-transform: none;
+  display: inline-block;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 2rem;
+
+}
+
+.my-rounded {
+  border-radius: 100px !important;
+}
+
+.bi {
+  margin: 0.8rem !important;
+}
+.bs-icon.bs-icon-primary {
+  color: white !important;
+  background: #3763f4 !important;
+  border-radius: 100px !important;;
+}
+
+
+
+
 

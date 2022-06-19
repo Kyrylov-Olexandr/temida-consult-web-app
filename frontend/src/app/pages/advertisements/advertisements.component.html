@@ -29,9 +29,11 @@
                   title="Виберіть налаштування" aria-describedby="btnAdvConfig" name="configId"
                   ngModel [(ngModel)]="selectedAdv.configId" required>
             <option value=0>Нове налаштування</option>
-            <option *ngFor="let advConfig of advConfigs" [value]="advConfig">{{advConfig.email}}</option>
+            <option *ngFor="let advConfig of advConfigs" [value]="advConfig.id">
+              {{advConfigTitle(advConfig)}}
+            </option>
           </select>
-          <button class="btn btn-outline-primary" type="button" id="btnAdvConfig" mdbRipple rippleColor="info"
+          <button class="btn btn-primary" type="button" id="btnAdvConfig" mdbRipple rippleColor="info"
                   (click)="openConfig()">
             <i class="fas fa-cog"></i>
           </button>
@@ -48,6 +50,8 @@
         <label mdbLabel class="form-label" for="message">Повідомлення</label>
       </mdb-form-control>
       <button type="submit" class="btn btn-primary">Зберегти</button>
+      <button type="submit" class="btn btn-info">Надіслати</button>
+      <button class="btn btn-danger">Видалити</button>
     </form>
   </div>
 </div>
