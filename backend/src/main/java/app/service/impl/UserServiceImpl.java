@@ -3,8 +3,10 @@ package app.service.impl;
 
 import app.enums.Role;
 import app.exception.UserNotValidException;
+import app.model.Subscription;
 import app.model.User;
 import app.repository.UserRepository;
+import app.service.SubscriptionService;
 import app.service.UserService;
 import app.vo.SignUpForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +23,20 @@ import java.util.Optional;
 @DependsOn("passwordEncoder")
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    private final UserRepository userRepository;
+
+    private final SubscriptionService subscriptionService;
 
     @Autowired
-    private UserRepository userRepository;
-
+    public UserServiceImpl(PasswordEncoder passwordEncoder,
+                           UserRepository userRepository,
+                           SubscriptionService subscriptionService) {
+        this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
+        this.subscriptionService = subscriptionService;
+    }
 
     @Override
     public Optional<User> findOne(String email) {
@@ -48,7 +58,11 @@ public class UserServiceImpl implements UserService {
         user.setLastName(signUpForm.getLastName());
         user.setRole(Role.ADMIN.name());
         try {
-            return userRepository.save(user);
+            User savedUser = userRepository.save(user);
+            Subscription subscription = new Subscription();
+            subscription.setEmail(savedUser.getEmail());
+            subscriptionService.save(subscription);
+            return savedUser;
         } catch (Exception e) {
             throw new UserNotValidException();
         }

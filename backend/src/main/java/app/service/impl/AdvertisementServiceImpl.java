@@ -2,8 +2,6 @@ package app.service.impl;
 
 
 import app.email_sender.EmailSenderFactory;
-import app.email_sender.GmailEmailSender;
-import app.email_sender.MailServiceEnum;
 import app.model.Advertisement;
 import app.model.AdvertisementConfig;
 import app.model.Subscription;
@@ -11,7 +9,6 @@ import app.repository.AdvertisementRepository;
 import app.service.AdvertisementService;
 import app.service.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
@@ -26,6 +23,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     private final AdvertisementRepository advertisementRepository;
 
     private final SubscriptionService subscriptionService;
+
     private final EmailSenderFactory emailSenderFactory;
 
     @Autowired
@@ -66,14 +64,16 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public void send(Long id, String mailService) {
         Advertisement advertisement = findById(id).orElseThrow();
         AdvertisementConfig config = advertisement.getConfig();
-        JavaMailSenderImpl mailSender = emailSenderFactory.createEmailSender(mailService);
-        mailSender.setUsername(config.getEmail());
+        JavaMailSenderImpl mailSender = emailSenderFactory.createEmailSender(mailService.toUpperCase());
+        String from = config.getEmail();
+        mailSender.setUsername(from);
         mailSender.setPassword(config.getPassword());
         List<Subscription> subscriptions = subscriptionService.findAll();
         String[] recipients = subscriptions.stream()
                 .map(Subscription::getEmail)
                 .toArray(String[]::new);
         SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(from);
         message.setTo(recipients);
         message.setSubject(advertisement.getSubject());
         message.setText(advertisement.getContent());

@@ -3,6 +3,7 @@ import {MdbModalRef} from "mdb-angular-ui-kit/modal";
 import {AdvertisementConfigService} from "../../../services/advertisement-config.service";
 import {AdvertisementConfig} from "../../../models/AdvertisementConfig";
 import {NgForm} from "@angular/forms";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-adv-config-modal',
@@ -11,7 +12,8 @@ import {NgForm} from "@angular/forms";
 })
 export class AdvConfigModalComponent implements OnInit {
 
-  //configs: Array<AdvertisementConfig> = [];
+  // savedConfigSubject = new Subject<AdvertisementConfig>();
+
   selectedConfig: AdvertisementConfig = new AdvertisementConfig();
 
   constructor(public modalRef: MdbModalRef<AdvConfigModalComponent>,
@@ -22,8 +24,12 @@ export class AdvConfigModalComponent implements OnInit {
   }
 
   save() {
-    console.log('test')
-    this.advConfigService.save(this.selectedConfig).subscribe();
+    this.advConfigService.save(this.selectedConfig).subscribe(response => {
+      if (response.ok) {
+        // this.savedConfigSubject.next(response.body!);
+        this.modalRef.close(response.body!);
+      }
+    });
   }
 
 }

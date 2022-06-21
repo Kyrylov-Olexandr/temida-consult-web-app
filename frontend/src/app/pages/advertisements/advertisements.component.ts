@@ -24,7 +24,7 @@ export class AdvertisementsComponent implements OnInit {
 
   public advConfigs: Array<AdvertisementConfig> = [];
 
-  public selectedConfigId: number | undefined;
+  // public selectedConfigId: number | undefined;
 
   selectedAdv: Advertisement;
 
@@ -58,6 +58,10 @@ export class AdvertisementsComponent implements OnInit {
             ? new AdvertisementConfig()
             : this.advConfigs.find(el => el.id === this.selectedAdv.configId),
         }
+      });
+      this.advConfigModalRef.onClose.subscribe((config: AdvertisementConfig) => {
+        this.advConfigs.push(config);
+        this.selectedAdv.configId = config.id;
       })
     }
   }
@@ -80,7 +84,11 @@ export class AdvertisementsComponent implements OnInit {
       response => {
         if (response.ok) {
           if (response.body != null) {
-            this.advertisements.push(response.body);
+            const savedAdv = response.body;
+            if (this.selectedAdv.id === 0) {
+              this.advertisements.push(savedAdv);
+            }
+            this.selectedAdv = savedAdv;
           }
         }
       }
@@ -95,6 +103,12 @@ export class AdvertisementsComponent implements OnInit {
 
   openAdvertisement(adv: Advertisement) {
     this.selectedAdv = adv;
+  }
+
+  send(advId: number) {
+    this.advertisementService.send(advId).subscribe(response => {
+      alert(`Повідомлення надіслано`);
+    })
   }
 
   public advConfigTitle(config: AdvertisementConfig): string {

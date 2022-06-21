@@ -18,6 +18,6 @@ export class AdvertisementConfigService {
 
   save(config: AdvertisementConfig) {
     const url = `${apiUrl}/advConfig`;
-    return this.http.post(url, config);
+    return this.http.post<AdvertisementConfig>(url, config, {observe: 'response'});
   }
 }

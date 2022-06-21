@@ -20,4 +20,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     public List<Subscription> findAll() {
         return subscriptionRepository.findAll();
     }
+
+    @Override
+    public Subscription save(Subscription subscription) {
+        return subscriptionRepository.save(subscription);
+    }
 }

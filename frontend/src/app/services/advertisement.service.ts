@@ -21,4 +21,9 @@ export class AdvertisementService {
     const url = `${apiUrl}/advertisement`
     return this.http.post<Advertisement>(url, adv, {observe: 'response'});
   }
+
+  send(advId: number) {
+    const url = `${apiUrl}/advertisement/${advId}/send`;
+    return this.http.post(url, {}, {observe: 'response'});
+  }
 }

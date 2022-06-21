@@ -1,5 +1,6 @@
 package app.service;
 
+import app.dto.AdvertisementDTO;
 import app.email_sender.MailServiceEnum;
 import app.model.Advertisement;
 

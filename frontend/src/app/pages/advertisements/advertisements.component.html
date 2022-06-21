@@ -50,7 +50,11 @@
         <label mdbLabel class="form-label" for="message">Повідомлення</label>
       </mdb-form-control>
       <button type="submit" class="btn btn-primary">Зберегти</button>
-      <button type="submit" class="btn btn-info">Надіслати</button>
+      <button type="submit" class="btn btn-info"
+              (click)="send(selectedAdv.id)"
+              [disabled]="selectedAdv.id === 0">
+        Надіслати
+      </button>
       <button class="btn btn-danger">Видалити</button>
     </form>
   </div>

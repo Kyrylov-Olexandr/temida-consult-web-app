@@ -12,6 +12,9 @@ public class EmailSenderFactory {
             case GMAIL -> {
                 return new GmailEmailSender();
             }
+            case OUTLOOK -> {
+                return new OutlookEmailSender();
+            }
         }
         return null;
     }
