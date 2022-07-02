@@ -1,0 +1,19 @@
+version: '2'
+services:
+  db:
+    image: mysql:8.0.29-oracle
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+  backend:
+    build: backend/.
+    ports: 
+      - "8080:8080"
+    depends_on:
+      - db
+  frontend:
+    build: frontend/.
+    ports: 
+      - "80:80"
+    depends_on: 
+      - backend
