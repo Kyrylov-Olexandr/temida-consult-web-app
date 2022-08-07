@@ -4,8 +4,8 @@ services:
     image: mysql:8.0.29-oracle
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_ALLOW_EMPTY_PASSWORD: false
-      MYSQL_RANDOM_ROOT_PASSWORD: false
+      MYSQL_ALLOW_EMPTY_PASSWORD: 0
+      MYSQL_RANDOM_ROOT_PASSWORD: 0
 
   backend:
     build: backend/.
